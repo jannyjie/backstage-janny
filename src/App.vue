@@ -1,125 +1,85 @@
 <template>
-  <div class="nav">
-    <div class="menu">
+  <a-layout>
+    <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
       <div class="menu-title">
-        <h1 v-if="titleOpen">1111人力銀行</h1>
-        <h1 v-else>活動網站</h1>
+        <h1 v-if="collapsed">活動網站</h1>
+        <h1 v-else>1111人力銀行</h1>
       </div>
-      <a-button  @click="toggleCollapsed" >
-      <MenuUnfoldOutlined v-if="collapsed" />
-      <MenuFoldOutlined v-else />
-      </a-button>
-    </div>
-    <div class="box">
-        <a-menu
-        mode="inline"
-        :inline-collapsed="collapsed"
-        v-model:openKeys="openKeys"
-        v-model:selectedKeys="selectedKeys"
-        :style="'width:'+ num * 3.3 +'%;'"
-      >
-        <a-menu-item key="1">
-          <template #icon>
-            <PieChartOutlined />
-          </template>
-          <span>Option 1</span>
-        </a-menu-item>
-        <a-menu-item key="2">
-          <template #icon>
-            <DesktopOutlined />
-          </template>
-          <span>Option 2</span>
-        </a-menu-item>
-        <a-menu-item key="3">
-          <template #icon>
-            <InboxOutlined />
-          </template>
-          <span>Option 3</span>
-        </a-menu-item>
-        <a-sub-menu key="sub1">
-          <template #icon>
-            <MailOutlined />
-          </template>
-          <template #title>Navigation One</template>
-          <a-menu-item key="5">Option 5</a-menu-item>
-          <a-menu-item key="6">Option 6</a-menu-item>
-          <a-menu-item key="7">Option 7</a-menu-item>
-          <a-menu-item key="8">Option 8</a-menu-item>
-        </a-sub-menu>
-        <a-sub-menu key="sub2">
-          <template #icon>
-            <AppstoreOutlined />
-          </template>
-          <template #title>Navigation Two</template>
-          <a-menu-item key="9">Option 9</a-menu-item>
-          <a-menu-item key="10">Option 10</a-menu-item>
-          <a-sub-menu key="sub3" title="Submenu">
-            <a-menu-item key="11">Option 11</a-menu-item>
-            <a-menu-item key="12">Option 12</a-menu-item>
-          </a-sub-menu>
-        </a-sub-menu>
+      <a-menu mode="inline" v-model="selectedKeys">
+        <Navbar/>
       </a-menu>
-
-      <div :style="'width:'+ (100 - num * 3.3) +'%;'" >
-        <router-view  class="boxa" />
-      </div>
-    </div>
-  </div>
+    </a-layout-sider>
+    <a-layout>
+      <a-layout-header style="background: #fff; padding: 0">
+        <menu-unfold-outlined
+          v-if="collapsed"
+          class="trigger"
+          @click="() => (collapsed = !collapsed)"
+        />
+        <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
+      </a-layout-header>
+      <a-layout-content
+        :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
+      >
+         <router-view  class="boxa" />
+      </a-layout-content>
+       <a-layout-footer style="text-align: center">
+        Ant Design ©2018 Created by Ant UED
+      </a-layout-footer>
+    </a-layout>
+  </a-layout>
 </template>
-<script >
-import { reactive, toRefs, watch, ref } from 'vue';
+<script>
 import {
-  MenuFoldOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+  UploadOutlined,
   MenuUnfoldOutlined,
-  PieChartOutlined,
-  MailOutlined,
-  DesktopOutlined,
-  InboxOutlined,
-  AppstoreOutlined,
+  MenuFoldOutlined,
 } from '@ant-design/icons-vue';
+import Navbar from './components/Navbar.vue'
+import { ref } from 'vue';
+import { createMetaManager } from 'vue-meta'
 export default ({
-  setup() {
-    const state = reactive({
-      collapsed: false,
-      selectedKeys: ['1'],
-      openKeys: ['sub1'],
-      preOpenKeys: ['sub1'],
-    });
-
-    watch(
-      () => state.openKeys,
-      (val, oldVal) => {
-        state.preOpenKeys = oldVal;
-      },
-    );
-    const num = ref(4);
-    const titleOpen = ref(true);
-    const toggleCollapsed = () => {
-      state.collapsed = !state.collapsed;
-      state.openKeys = state.collapsed ? [] : state.preOpenKeys;
-      titleOpen.value = !titleOpen.value;
-      
-      (titleOpen.value === false) ?  num.value = 1 :  num.value = 4;
-    };
-
-    
-
-    return {
-      ...toRefs(state),
-      toggleCollapsed,
-      titleOpen,
-      num
-    };
-  },
+  
   components: {
-    MenuFoldOutlined,
+    UserOutlined,
+    VideoCameraOutlined,
+    UploadOutlined,
     MenuUnfoldOutlined,
-    PieChartOutlined,
-    MailOutlined,
-    DesktopOutlined,
-    InboxOutlined,
-    AppstoreOutlined,
-
+    MenuFoldOutlined,
+    Navbar
+  },
+  setup() {
+    const selectedKeys = ref('1');
+    const collapsed = ref(false);
+    return {
+      selectedKeys,
+       collapsed,
+    };
   },
 });
 </script>
+<style>
+#components-layout-demo-custom-trigger .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+#components-layout-demo-custom-trigger .trigger:hover {
+  color: #1890ff;
+}
+
+#components-layout-demo-custom-trigger .logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 16px;
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+</style>

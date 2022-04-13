@@ -6,6 +6,7 @@
         padding: 5px 10px;
         align-items: center;
         box-shadow: 1px 0px 10px #00000024;
+        background: #fff;
         &-title{
             display: flex;
             align-items: center;
@@ -29,8 +30,8 @@
             box-shadow: 4px 3px 10px #0e0a0a14 ;
             height: 100vh;
         }
-        .boxa{
-            padding: 30px;
-        }
+        // .boxa{
+        //     padding: 30px;
+        // }
     }
 }

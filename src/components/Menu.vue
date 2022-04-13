@@ -1,23 +1,11 @@
 <template>
-  <div class="nav">
-    <div class="menu">
-      <div class="menu-title">
-        <h1 v-if="titleOpen">1111人力銀行</h1>
-        <h1 v-else>活動網站</h1>
-      </div>
-      <a-button type="primary" @click="toggleCollapsed" >
-      <MenuUnfoldOutlined v-if="collapsed" />
-      <MenuFoldOutlined v-else />
-      </a-button>
-    </div>
     <a-menu
       mode="inline"
-      theme="dark"
       :inline-collapsed="collapsed"
       v-model:openKeys="openKeys"
       v-model:selectedKeys="selectedKeys"
     >
-      <a-menu-item key="1">
+      <!-- <a-menu-item key="1">
         <template #icon>
           <PieChartOutlined />
         </template>
@@ -56,9 +44,9 @@
           <a-menu-item key="11">Option 11</a-menu-item>
           <a-menu-item key="12">Option 12</a-menu-item>
         </a-sub-menu>
-      </a-sub-menu>
+      </a-sub-menu> -->
     </a-menu>
-  </div>
+
 </template>
 <script >
 import { reactive, toRefs, watch, ref } from 'vue';
