@@ -15,6 +15,24 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   }
+  ,
+  {
+    path: '/father',
+    name: 'father',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/FatherView.vue')
+  }
+  ,
+  {
+    path: '/children',
+    name: 'children',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/ChildrenView.vue')
+  }
 ]
 
 const router = createRouter({

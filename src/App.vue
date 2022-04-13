@@ -1,64 +1,85 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <h1>Todo</h1>
-  <input type="text" v-model="todoName" @keyup.enter="addTodo">
-  <ul>
-    <li v-for="item in todo" :key="item.id">{{item.name}}</li>
-  </ul>
-  <!-- <router-view/> -->
+  <a-layout>
+    <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
+      <div class="menu-title">
+        <h1 v-if="collapsed">活動網站</h1>
+        <h1 v-else>1111人力銀行</h1>
+      </div>
+      <a-menu mode="inline" v-model="selectedKeys">
+        <Navbar/>
+      </a-menu>
+    </a-layout-sider>
+    <a-layout>
+      <a-layout-header style="background: #fff; padding: 0">
+        <menu-unfold-outlined
+          v-if="collapsed"
+          class="trigger"
+          @click="() => (collapsed = !collapsed)"
+        />
+        <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
+      </a-layout-header>
+      <a-layout-content
+        :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
+      >
+         <router-view  class="boxa" />
+      </a-layout-content>
+       <a-layout-footer style="text-align: center">
+        Ant Design ©2018 Created by Ant UED
+      </a-layout-footer>
+    </a-layout>
+  </a-layout>
 </template>
 <script>
-import axios from 'axios';
-const baseURL = "http://localhost:3000/todos";
+import {
+  UserOutlined,
+  VideoCameraOutlined,
+  UploadOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+} from '@ant-design/icons-vue';
+import Navbar from './components/Navbar.vue'
+import { ref } from 'vue';
+import { createMetaManager } from 'vue-meta'
 export default ({
-  name: 'app',
-  data(){
-    return{
-      todo: [],
-      todoName:'',
-    };  
+  
+  components: {
+    UserOutlined,
+    VideoCameraOutlined,
+    UploadOutlined,
+    MenuUnfoldOutlined,
+    MenuFoldOutlined,
+    Navbar
   },
-  async created(){
-    try{
-      const res = await axios.get(baseURL);
-      this.todo = res.data;
-    }catch(e){
-      console.log(e);
-    }
+  setup() {
+    const selectedKeys = ref('1');
+    const collapsed = ref(false);
+    return {
+      selectedKeys,
+       collapsed,
+    };
   },
-  methods:{
-    async addTodo(){
-      const res = await axios.post(baseURL, {name: this.todoName});
-
-      this.todo = [...this.todo, res.data];
-      this.todoName = '';
-    }
-  }
-})
+});
 </script>
-
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+#components-layout-demo-custom-trigger .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
-nav {
-  padding: 30px;
+#components-layout-demo-custom-trigger .trigger:hover {
+  color: #1890ff;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+#components-layout-demo-custom-trigger .logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 16px;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+.site-layout .site-layout-background {
+  background: #fff;
 }
 </style>
