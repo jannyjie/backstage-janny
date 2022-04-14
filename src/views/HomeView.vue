@@ -17,7 +17,6 @@
   </div>
 </template>
 <script>
-import { TableState, TableStateFilters } from 'ant-design-vue/es/table/interface';
 import Table from '../components/Table.vue';
 import { useState } from "../composition-api";
 const routes = [
@@ -31,6 +30,7 @@ const routes = [
   }
 ];
 export default ({
+  name:"TablePage",
   components:{
     Table
   },

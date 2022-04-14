@@ -57,6 +57,7 @@ import {
   MailOutlined,
 } from '@ant-design/icons-vue';
 export default {
+  name:"NavBarProps",
 components: {
     MailOutlined,
 

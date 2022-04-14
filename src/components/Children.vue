@@ -7,10 +7,10 @@
 </template>
 <script>
 export default {
-    name:"Children",
+    name:"ChildrenProps",
 // 2、子組件通過 props 來接收
   props:["sonData"],
-  setup(props){
+  setup(){
     // const childrenbut = () => {
     //  // props.sonData  可以訪問到父組件傳遞的數據
     //   console.log(props.sonData);

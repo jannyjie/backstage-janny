@@ -56,6 +56,7 @@ import { defineComponent, reactive, ref, toRefs } from 'vue';
 import { useState } from "../composition-api";
 
 export default defineComponent({
+  name:"TabksStatePage",
   components: {
     SearchOutlined,
   },

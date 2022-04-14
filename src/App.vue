@@ -31,21 +31,20 @@
 </template>
 <script>
 import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
+  // UserOutlined,
+  // VideoCameraOutlined,
+  // UploadOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from '@ant-design/icons-vue';
 import Navbar from './components/Navbar.vue'
 import { ref } from 'vue';
-import { createMetaManager } from 'vue-meta'
 export default ({
   
   components: {
-    UserOutlined,
-    VideoCameraOutlined,
-    UploadOutlined,
+    // UserOutlined,
+    // VideoCameraOutlined,
+    // UploadOutlined,
     MenuUnfoldOutlined,
     MenuFoldOutlined,
     Navbar

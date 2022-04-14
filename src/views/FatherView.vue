@@ -15,7 +15,7 @@ export default defineComponent({
   components:{
     children,
   },
-name:"about",
+name:"aboutPage",
 setup(){
   const state = reactive({
     fatherData:"hello"

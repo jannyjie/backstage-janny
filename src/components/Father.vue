@@ -2,12 +2,13 @@
 import { onMounted, ref } from "vue";
 
 export default {
+  name:"FatherProps",
   emits: {
     TimeOut: (num) => {
       return num.value === 0;
     },
   },
-  setup(props, { emit }) {
+  setup( emit) {
     const num = ref(5);
     let timer = null;
     onMounted(() => {
