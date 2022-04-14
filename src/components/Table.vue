@@ -53,14 +53,14 @@
 <script>
 import { SearchOutlined } from '@ant-design/icons-vue';
 import { defineComponent, reactive, ref, toRefs } from 'vue';
-import { useState } from "../composition-api";
+import { useTable } from "../composition-api";
 
 export default defineComponent({
   components: {
     SearchOutlined,
   },
   setup() {
-    const { data } = useState();
+    const { data } = useTable();
     const state = reactive({
       searchText: '',
       searchedColumn: '',

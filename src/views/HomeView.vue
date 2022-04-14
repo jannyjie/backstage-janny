@@ -19,7 +19,7 @@
 <script>
 import { TableState, TableStateFilters } from 'ant-design-vue/es/table/interface';
 import Table from '../components/Table.vue';
-import { useState } from "../composition-api";
+import { useTable } from "../composition-api";
 const routes = [
   {
     path: 'index',
@@ -35,7 +35,7 @@ export default ({
     Table
   },
   setup() {
-    const { data } = useState();
+    const { data } = useTable();
     return {
       routes,
       data,
